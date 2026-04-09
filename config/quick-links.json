@@ -1,0 +1,9 @@
+[
+  { "id": "github", "label": "GitHub", "url": "https://github.com", "icon": "github" },
+  { "id": "claude", "label": "Claude", "url": "https://claude.ai", "icon": "ai" },
+  { "id": "tryhackme", "label": "TryHackMe", "url": "https://tryhackme.com", "icon": "shield" },
+  { "id": "alpaca", "label": "Alpaca", "url": "https://alpaca.markets", "icon": "chart" },
+  { "id": "mybama", "label": "myBama", "url": "https://mybama.ua.edu", "icon": "school" },
+  { "id": "gmail", "label": "Gmail", "url": "https://mail.google.com", "icon": "mail" },
+  { "id": "calendar", "label": "Calendar", "url": "https://calendar.google.com", "icon": "calendar" }
+]
