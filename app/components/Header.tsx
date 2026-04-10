@@ -27,16 +27,16 @@ export default function Header() {
   }, []);
 
   if (!now) {
-    // SSR placeholder
     return (
       <header
         style={{
-          padding: "28px 32px 20px",
+          padding: "18px 32px",
           borderBottom: "1px solid var(--border)",
+          flexShrink: 0,
         }}
       >
-        <div className="skeleton" style={{ width: "300px", height: "32px", marginBottom: "8px" }} />
-        <div className="skeleton" style={{ width: "200px", height: "16px" }} />
+        <div className="skeleton" style={{ width: "280px", height: "28px", marginBottom: "6px" }} />
+        <div className="skeleton" style={{ width: "180px", height: "14px" }} />
       </header>
     );
   }
@@ -44,19 +44,20 @@ export default function Header() {
   return (
     <header
       style={{
-        padding: "28px 32px 20px",
+        padding: "18px 32px",
         borderBottom: "1px solid var(--border)",
         display: "flex",
-        alignItems: "flex-end",
+        alignItems: "center",
         justifyContent: "space-between",
         flexWrap: "wrap",
         gap: "8px",
+        flexShrink: 0,
       }}
     >
       <div>
         <h1
           style={{
-            fontSize: "28px",
+            fontSize: "24px",
             fontWeight: 700,
             color: "var(--foreground)",
             margin: 0,
@@ -67,9 +68,9 @@ export default function Header() {
         </h1>
         <p
           style={{
-            fontSize: "15px",
+            fontSize: "14px",
             color: "var(--muted)",
-            margin: "6px 0 0",
+            margin: "3px 0 0",
           }}
         >
           {formatDate(now)}

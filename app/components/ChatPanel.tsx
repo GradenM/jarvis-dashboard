@@ -75,7 +75,6 @@ export default function ChatPanel() {
   const [streaming, setStreaming] = useState(false);
   const [context, setContext] = useState<string>("");
   const [contextLoading, setContextLoading] = useState(true);
-  const [mobileOpen, setMobileOpen] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const abortRef = useRef<AbortController | null>(null);
@@ -186,8 +185,8 @@ export default function ChatPanel() {
         display: "flex",
         flexDirection: "column",
         height: "100%",
+        width: "360px",
         background: "var(--surface)",
-        borderLeft: "1px solid var(--border)",
       }}
     >
       <style>{`
@@ -251,23 +250,6 @@ export default function ChatPanel() {
               Clear
             </button>
           )}
-          {/* Mobile close button */}
-          <button
-            className="chat-mobile-close"
-            onClick={() => setMobileOpen(false)}
-            style={{
-              background: "transparent",
-              border: "none",
-              cursor: "pointer",
-              color: "var(--muted)",
-              fontSize: "18px",
-              lineHeight: 1,
-              padding: "2px 4px",
-              display: "none",
-            }}
-          >
-            ×
-          </button>
         </div>
       </div>
 
@@ -407,71 +389,8 @@ export default function ChatPanel() {
   );
 
   return (
-    <>
-      <style>{`
-        /* Desktop sidebar */
-        .chat-sidebar {
-          width: 360px;
-          flex-shrink: 0;
-          position: sticky;
-          top: 0;
-          height: 100vh;
-          overflow: hidden;
-        }
-        /* Mobile: hide sidebar, show FAB */
-        @media (max-width: 900px) {
-          .chat-sidebar { display: none !important; }
-          .chat-fab { display: flex !important; }
-          .chat-mobile-close { display: block !important; }
-          .chat-mobile-sheet {
-            display: flex !important;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 70vh;
-            z-index: 100;
-            border-radius: 16px 16px 0 0;
-            overflow: hidden;
-          }
-        }
-      `}</style>
-
-      {/* Desktop sidebar */}
-      <aside className="chat-sidebar">{panelContent}</aside>
-
-      {/* Mobile FAB */}
-      <button
-        className="chat-fab"
-        onClick={() => setMobileOpen(true)}
-        style={{
-          display: "none",
-          position: "fixed",
-          bottom: "24px",
-          right: "24px",
-          width: "52px",
-          height: "52px",
-          borderRadius: "50%",
-          background: "var(--accent)",
-          border: "none",
-          color: "#fff",
-          fontSize: "22px",
-          cursor: "pointer",
-          alignItems: "center",
-          justifyContent: "center",
-          boxShadow: "0 4px 20px rgba(99,102,241,0.4)",
-          zIndex: 50,
-        }}
-      >
-        💬
-      </button>
-
-      {/* Mobile bottom sheet */}
-      {mobileOpen && (
-        <div className="chat-mobile-sheet">
-          {panelContent}
-        </div>
-      )}
-    </>
+    <div style={{ width: "100%", height: "100%" }}>
+      {panelContent}
+    </div>
   );
 }
