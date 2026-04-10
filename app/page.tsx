@@ -4,64 +4,65 @@ import MarketCard from "@/app/components/MarketCard";
 import NewsCard from "@/app/components/NewsCard";
 import TechNewsCard from "@/app/components/TechNewsCard";
 import CyberNewsCard from "@/app/components/CyberNewsCard";
+import ChatPanel from "@/app/components/ChatPanel";
 
 export default function DashboardPage() {
   return (
     <div
       style={{
-        minHeight: "100vh",
+        height: "100vh",
         display: "flex",
         flexDirection: "column",
         background: "var(--background)",
+        overflow: "hidden",
       }}
     >
       <Header />
 
-      <main
-        style={{
-          flex: 1,
-          padding: "24px 32px",
-          maxWidth: "1600px",
-          width: "100%",
-          margin: "0 auto",
-        }}
-      >
-        {/* Top row: Weather + Markets side by side, then news below */}
-        <div
+      {/* Body: scrollable content + sticky chat sidebar */}
+      <div style={{ flex: 1, display: "flex", overflow: "hidden" }}>
+        <main
           style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(340px, 1fr))",
-            gap: "20px",
+            flex: 1,
+            overflowY: "auto",
+            padding: "24px 32px",
           }}
         >
-          <WeatherCard animationDelay={0} />
-          <MarketCard animationDelay={50} />
-          <NewsCard animationDelay={100} />
-          <TechNewsCard animationDelay={150} />
-          <CyberNewsCard animationDelay={200} />
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fill, minmax(340px, 1fr))",
+              gap: "20px",
+              maxWidth: "1200px",
+            }}
+          >
+            <WeatherCard animationDelay={0} />
+            <MarketCard animationDelay={50} />
+            <NewsCard animationDelay={100} />
+            <TechNewsCard animationDelay={150} />
+            <CyberNewsCard animationDelay={200} />
 
-          {/* Phase 3–4 placeholders */}
-          <PlaceholderCard title="AI Chat" icon="💬" delay={250} phase={3} />
-          <PlaceholderCard title="Gmail" icon="📧" delay={300} phase={4} />
-          <PlaceholderCard title="Calendar" icon="📅" delay={350} phase={4} />
-          <PlaceholderCard title="Countdowns" icon="⏳" delay={400} phase={4} />
-          <PlaceholderCard title="Quick Links" icon="🔗" delay={450} phase={4} />
-        </div>
-      </main>
+            {/* Phase 4 placeholders */}
+            <PlaceholderCard title="Gmail" icon="📧" delay={250} phase={4} />
+            <PlaceholderCard title="Calendar" icon="📅" delay={300} phase={4} />
+            <PlaceholderCard title="Countdowns" icon="⏳" delay={350} phase={4} />
+            <PlaceholderCard title="Quick Links" icon="🔗" delay={400} phase={4} />
+          </div>
 
-      <footer
-        style={{
-          padding: "12px 32px",
-          borderTop: "1px solid var(--border)",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          fontSize: "11px",
-          color: "var(--muted)",
-        }}
-      >
-        JARVIS — Personal Morning Briefing Dashboard
-      </footer>
+          <footer
+            style={{
+              padding: "24px 0 12px",
+              fontSize: "11px",
+              color: "var(--muted)",
+              textAlign: "center",
+            }}
+          >
+            JARVIS — Personal Morning Briefing Dashboard
+          </footer>
+        </main>
+
+        <ChatPanel />
+      </div>
     </div>
   );
 }
@@ -91,7 +92,7 @@ function PlaceholderCard({
         display: "flex",
         flexDirection: "column",
         gap: "8px",
-        opacity: 0.6,
+        opacity: 0.5,
       }}
     >
       <div
