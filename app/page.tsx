@@ -1,5 +1,9 @@
 import Header from "@/app/components/Header";
 import WeatherCard from "@/app/components/WeatherCard";
+import MarketCard from "@/app/components/MarketCard";
+import NewsCard from "@/app/components/NewsCard";
+import TechNewsCard from "@/app/components/TechNewsCard";
+import CyberNewsCard from "@/app/components/CyberNewsCard";
 
 export default function DashboardPage() {
   return (
@@ -22,21 +26,26 @@ export default function DashboardPage() {
           margin: "0 auto",
         }}
       >
+        {/* Top row: Weather + Markets side by side, then news below */}
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))",
+            gridTemplateColumns: "repeat(auto-fill, minmax(340px, 1fr))",
             gap: "20px",
           }}
         >
           <WeatherCard animationDelay={0} />
-          <PlaceholderCard title="Market Intelligence" icon="📈" delay={50} />
-          <PlaceholderCard title="World News" icon="🌎" delay={100} />
-          <PlaceholderCard title="Tech & AI News" icon="🤖" delay={150} />
-          <PlaceholderCard title="Cybersecurity" icon="🛡️" delay={200} />
-          <PlaceholderCard title="Trending" icon="🔥" delay={250} />
-          <PlaceholderCard title="Gmail" icon="📧" delay={300} />
-          <PlaceholderCard title="Calendar" icon="📅" delay={350} />
+          <MarketCard animationDelay={50} />
+          <NewsCard animationDelay={100} />
+          <TechNewsCard animationDelay={150} />
+          <CyberNewsCard animationDelay={200} />
+
+          {/* Phase 3–4 placeholders */}
+          <PlaceholderCard title="AI Chat" icon="💬" delay={250} phase={3} />
+          <PlaceholderCard title="Gmail" icon="📧" delay={300} phase={4} />
+          <PlaceholderCard title="Calendar" icon="📅" delay={350} phase={4} />
+          <PlaceholderCard title="Countdowns" icon="⏳" delay={400} phase={4} />
+          <PlaceholderCard title="Quick Links" icon="🔗" delay={450} phase={4} />
         </div>
       </main>
 
@@ -61,10 +70,12 @@ function PlaceholderCard({
   title,
   icon,
   delay,
+  phase,
 }: {
   title: string;
   icon: string;
   delay: number;
+  phase: number;
 }) {
   return (
     <div
@@ -76,10 +87,11 @@ function PlaceholderCard({
         padding: "20px",
         animationDelay: `${delay}ms`,
         animationFillMode: "both",
-        minHeight: "140px",
+        minHeight: "120px",
         display: "flex",
         flexDirection: "column",
         gap: "8px",
+        opacity: 0.6,
       }}
     >
       <div
@@ -104,11 +116,11 @@ function PlaceholderCard({
           alignItems: "center",
           justifyContent: "center",
           color: "var(--muted)",
-          fontSize: "13px",
-          opacity: 0.5,
+          fontSize: "12px",
+          opacity: 0.6,
         }}
       >
-        Coming in Phase 2
+        Phase {phase}
       </div>
     </div>
   );
